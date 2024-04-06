@@ -1,4 +1,5 @@
 import numpy as np
+import scipy.integrate as sci
 import matplotlib.pyplot as plt
 import pandas as pd
 import resource
@@ -33,7 +34,7 @@ plt.xlabel('Δl (mm)',fontsize = 12)
 plt.ylabel('F (N)',fontsize = 12)
 plt.xlim(0,df[L].iloc[-1]+1)
 plt.ylim(0,max(df[F])+5000)
-plt.show()
+#plt.show()
 
 l_f = l_0 +df[L].iloc[-1]-2.2
 A_f = (np.pi*(D_f/2)**2)*10**(-3*2)  #in m^2
@@ -67,7 +68,7 @@ plt.annotate(f"≈{int(max_sig)+1} MPa", xy=(max_e,max_sig), xytext=(0.15,1050),
              arrowprops=dict(arrowstyle='-'),
              fontsize=8, color='black')
 plt.legend(loc = 'upper left')
-plt.show()
+#plt.show()
 
 
 
@@ -113,7 +114,7 @@ plt.ylabel('σ (MPa)',fontsize = 12)
 plt.xlim(0,df['e'].iloc[-1]+df['e'].iloc[-1]/6)
 plt.ylim(0,max(df['sigma'])+max(df['sigma'])/6)
 plt.legend(loc = 'upper left')
-plt.show()
+#plt.show()
 '''
 print(sum)
 print(inde)
@@ -135,14 +136,18 @@ plt.legend(loc = 'upper left')
 plt.annotate(f"≈{int(sig02)+1} MPa", xy=(df['e'].iloc[inde[1]],y[inde[1]]), xytext=(0.15,1000),
              arrowprops=dict(arrowstyle='-'),
              fontsize=8, color='black')
-plt.show()
+#plt.show()
 
 Ur = (1/2)*((sig02**2)/E)
 
 Ur2 = np.trapz(df['sigma'][:inde[1]],df['e'][:inde[1]])
+Ur3 = sci.simpson(y = df['sigma'][:inde[1]],x = df['e'][:inde[1]])
+
 
 
 MT = np.trapz(df['sigma'],df['e'])
+MT1 = sci.simpson(y = df['sigma'],x = df['e'])
+
 
 with plt.style.context('Solarize_Light2'):
     plt.plot(df['e'],df['sigma'],color ='blue',label = 'Engineering stress-engineering strain')
@@ -158,7 +163,7 @@ plt.legend(loc = 'upper left')
 plt.annotate(f"≈{int(sig02)+1} MPa", xy=(df['e'].iloc[inde[1]],y[inde[1]]), xytext=(0.15,1000),
              arrowprops=dict(arrowstyle='-'),
              fontsize=8, color='black')
-plt.show()
+#plt.show()
 with plt.style.context('Solarize_Light2'):
     plt.plot(df['e'],df['sigma'],color ='blue',label = 'Engineering stress-engineering strain')
     plt.fill_between(df['e'],df['sigma'], color='lightblue', alpha=0.5, label = 'Modulus of toughness (MT)')
@@ -170,13 +175,12 @@ plt.xlim(0,df['e'].iloc[-1]+df['e'].iloc[-1]/6)
 plt.ylim(0,max(df['sigma'])+max(df['sigma'])/6)
 plt.legend(loc = 'upper left')
 
-plt.show()
+#plt.show()
 
 
 sigma_max = df['sigma'].max() #Eine Auflosung 5
 df['e_R'] = np.log(1+df['e'])
 df['sigma_R'] = df['sigma']*np.log(1+df['e'])  #in MPa
-print(df)
  
 with plt.style.context('Solarize_Light2'):
     plt.plot(df['e'],df['sigma'],color = 'blue',label = 'Engineering stress-engineering strain')
@@ -188,7 +192,7 @@ plt.xlim(0,df['e'].iloc[-1]+df['e'].iloc[-1]/6)
 plt.ylim(0,max(df['sigma'])+max(df['sigma'])/6)
 plt.legend(loc = 'upper left')
 
-plt.show()
+#plt.show()
 print(f"Modulus of elasticity (E) = {E} ± {error_s} MPa\nYiels Strength at 0.2% (σ0.2%) = {sig02} ± {min(error)} MPa\nUltimate Tensile Strength (UTS) = {max_sig} MPa\nReduction in area (%RA) in % = {ra} %\nElongation at break (%EL) in % = {el} %\nModulus of resilience (formula) = {Ur} J/M^3\nModulus of resilience (Graphical method) = {Ur2} J/M^3\nModulus of toughness (MT) = {MT} J/M^3 ")
 
 
