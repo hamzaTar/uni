@@ -1,0 +1,14 @@
+21_ graphe
+22- it it does not show a linear compartment, and that is due to the unique crystal strucrue used in the meterail the vasitors are made of; namley semiconducting ceramic meterial, and they have intrincis nonlinear electrical properties; in other words the ressitance does not change preporcianl linear manner but rather in a non-linear one.
+23- The varistor is an electronic component made of semiconductor ceramic material,with a crystal structure that has nonlinear instricsic elextric properites.When a voltage is applied to the varistor, its resistance decreases within a specific voltage range, allowing significant current to flow through
+27- graphe
+
+28-No, it varies with light intensity
+
+29-The ressitence of the LDR varies with light intensityl; namely the ressitence increases the more intense the light is that it's detecting and the termpreture it's expreicneing.
+
+30-Internal variables such as the meterial the LDR is made from,the elements in curcuit that are connected to the LDR all effect its resistence.
+
+31- A photoresistor, also known as an LDR (Light Dependent Resistor) or photocell, is a gadget that changes its resistance based on how much light it’s exposed to. It’s made of semiconductors.
+When light hits the photoresistor, it gets the electrons in the semiconductor excited and this lowers the resistance of the component.
+But when the lights go out or it’s dim, the resistance of the photoresistor goes up; namely the darker it is, the higher the resistance.
