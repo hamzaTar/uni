@@ -1,0 +1,9 @@
+Modulus of elasticity (E) = 7809.396144031359 ± 0.6521093791460143 MPa
+Yiels Strength at 0.2% (σ0.2%) = 1008.6314224074416 ± 0.04029332615243675 MPa
+Ultimate Tensile Strength (UTS) = 1020.5494110646438 MPa
+Reduction in area (%RA) in % = 45.244751100793806 %
+Elongation at break (%EL) in % = 9.980981595092018 %
+Modulus of resilience (formula) = 65.13546806337897 J/M^3
+Modulus of resilience (Graphical method) = 81.37548564641524 J/M^3
+Modulus of toughness (MT) = 114.48246594077519 J/M^3
+66269.6 secs 102.2 MByte

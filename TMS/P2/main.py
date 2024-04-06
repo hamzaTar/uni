@@ -16,7 +16,6 @@ l_f = 34.3
 D_0 = 4.984   #in mm, D_0; Dieser Wert ist mit Unsicherheit behaftet. Versuchen Sie diesen Wert, falls die Ergebnisse nicht zufriedenstellend sind(  ----- ).
 
 A_0 = (np.pi*(D_0/2)**2)*10**(-3*2)  #in m^2
-print(A_0)
 
 D_f = 3.688 
 
@@ -35,7 +34,6 @@ plt.ylabel('F (N)',fontsize = 12)
 plt.xlim(0,df[L].iloc[-1]+1)
 plt.ylim(0,max(df[F])+5000)
 plt.show()
-#plt.savefig()
 
 l_f = l_0 +df[L].iloc[-1]-2.2
 A_f = (np.pi*(D_f/2)**2)*10**(-3*2)  #in m^2
@@ -70,8 +68,6 @@ plt.annotate(f"≈{int(max_sig)+1} MPa", xy=(max_e,max_sig), xytext=(0.15,1050),
              fontsize=8, color='black')
 plt.legend(loc = 'upper left')
 plt.show()
-#plt.savefig()
-
 
 
 
@@ -88,7 +84,8 @@ error_s = np.sqrt(cov[0][0])
 def sig__(x,c):
     return E*x + c
 sig_02 = 0.2/100
-y = sig__(df['e'],sig_02)
+cc = -sig_02*E 
+y = sig__(df['e'],cc)
 
 sum = 0
 rou = 1
@@ -117,8 +114,6 @@ plt.xlim(0,df['e'].iloc[-1]+df['e'].iloc[-1]/6)
 plt.ylim(0,max(df['sigma'])+max(df['sigma'])/6)
 plt.legend(loc = 'upper left')
 plt.show()
-#plt.savefig()
-
 '''
 print(sum)
 print(inde)
@@ -141,9 +136,6 @@ plt.annotate(f"≈{int(sig02)+1} MPa", xy=(df['e'].iloc[inde[1]],y[inde[1]]), xy
              arrowprops=dict(arrowstyle='-'),
              fontsize=8, color='black')
 plt.show()
-#plt.savefig()
-
-
 
 Ur = (1/2)*((sig02**2)/E)
 
@@ -167,8 +159,6 @@ plt.annotate(f"≈{int(sig02)+1} MPa", xy=(df['e'].iloc[inde[1]],y[inde[1]]), xy
              arrowprops=dict(arrowstyle='-'),
              fontsize=8, color='black')
 plt.show()
-#plt.savefig()
-
 with plt.style.context('Solarize_Light2'):
     plt.plot(df['e'],df['sigma'],color ='blue',label = 'Engineering stress-engineering strain')
     plt.fill_between(df['e'],df['sigma'], color='lightblue', alpha=0.5, label = 'Modulus of toughness (MT)')
@@ -179,8 +169,8 @@ plt.ylabel('σ (MPa)',fontsize = 12)
 plt.xlim(0,df['e'].iloc[-1]+df['e'].iloc[-1]/6)
 plt.ylim(0,max(df['sigma'])+max(df['sigma'])/6)
 plt.legend(loc = 'upper left')
-plt.show()
 
+plt.show()
 
 
 sigma_max = df['sigma'].max() #Eine Auflosung 5
@@ -197,10 +187,8 @@ plt.ylabel('σ (MPa)',fontsize = 12)
 plt.xlim(0,df['e'].iloc[-1]+df['e'].iloc[-1]/6)
 plt.ylim(0,max(df['sigma'])+max(df['sigma'])/6)
 plt.legend(loc = 'upper left')
+
 plt.show()
-#plt.savefig()
-
-
 print(f"Modulus of elasticity (E) = {E} ± {error_s} MPa\nYiels Strength at 0.2% (σ0.2%) = {sig02} ± {min(error)} MPa\nUltimate Tensile Strength (UTS) = {max_sig} MPa\nReduction in area (%RA) in % = {ra} %\nElongation at break (%EL) in % = {el} %\nModulus of resilience (formula) = {Ur} J/M^3\nModulus of resilience (Graphical method) = {Ur2} J/M^3\nModulus of toughness (MT) = {MT} J/M^3 ")
 
 
